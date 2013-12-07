@@ -9,3 +9,5 @@ target-ide/
 .classpath
 bin/
 
+# idea
+.idea/

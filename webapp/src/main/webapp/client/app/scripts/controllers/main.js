@@ -2,7 +2,7 @@
   'use strict';
   angular.module('angular-auth-demo', [
     'http-auth-interceptor',
-    //'content-mocks',
+    'content-mocks',
     'login',
     'content'
   ])
