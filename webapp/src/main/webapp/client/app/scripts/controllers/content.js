@@ -8,9 +8,12 @@
     $scope.restrictedContent = [];
 
     $scope.publicAction = function() {
-      $http.post('data/public', $scope.publicData).success(function(response) {
+      $http.get('../../restful/').success(function(response) {
         $scope.publicContent.push(response);
       });
+//      $http.post('data/public', $scope.publicData).success(function(response) {
+//        $scope.publicContent.push(response);
+//      });
     }
 
     $scope.restrictedAction = function() {
