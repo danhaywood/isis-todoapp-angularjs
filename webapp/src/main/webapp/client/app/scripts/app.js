@@ -47,6 +47,7 @@ angular.module('clientApp', [
             })
         ;
 
+/*
         function exampleInterceptor($q,$log) {
             function success(response) {
                 $log.info("Successful response: " + response);
@@ -62,6 +63,7 @@ angular.module('clientApp', [
             }
         }
         $httpProvider.responseInterceptors.push(exampleInterceptor);
+*/
 
 
     })
@@ -80,4 +82,29 @@ angular.module('clientApp', [
                     $location.path( "/login" );
             }
         });
-    });
+    })
+    .directive('authDemoApplication', function() {
+        return {
+            restrict: 'C',
+            link: function(scope, elem, attrs) {
+                //once Angular is started, remove class:
+                elem.removeClass('waiting-for-angular');
+
+                var login = elem.find('#login-holder');
+                var main = elem.find('#content');
+
+                login.hide();
+
+                scope.$on('event:auth-loginRequired', function() {
+                    login.slideDown('slow', function() {
+                        main.hide();
+                    });
+                });
+                scope.$on('event:auth-loginConfirmed', function() {
+                    main.show();
+                    login.slideUp();
+                });
+            }
+        }
+    })
+;

@@ -1,1 +1,11 @@
 target/
+target-ide/
+*.log
+*.swp
+
+# eclipse
+.settings/
+.project
+.classpath
+bin/
+

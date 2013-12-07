@@ -1,26 +1,12 @@
-'use strict';
-
-angular.module('clientApp')
-  .controller('LoginCtrl', function ($scope, $location, Auth, $q) {
-        $scope.credentials = {username: "sven", password: "pass"}
-
-/*
-        var defer = $q.defer();
-        defer.promise
-            .then(function() {
-                alert("I promised I would show up");
-            })
-            .then(function() {
-                alert("and me");
-            })
-            .then(function() {
-                alert("and me too");
-            })
-        defer.resolve();
-*/
-
-        $scope.login = function(){
-            Auth.setCredentials($scope.credentials)
-            $location.path("main")
-        }
+(function() {
+  'use strict';
+  angular.module('login',['http-auth-interceptor'])
+  
+  .controller('LoginController', function ($scope, $http, authService) {
+    $scope.submit = function() {
+      $http.post('auth/login').success(function() {
+        authService.loginConfirmed();
+      });
+    }
   });
+})();
