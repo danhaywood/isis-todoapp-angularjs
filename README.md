@@ -70,3 +70,5 @@ yo angular:route login
 
 
 Bootsnipp for login page
+
+
