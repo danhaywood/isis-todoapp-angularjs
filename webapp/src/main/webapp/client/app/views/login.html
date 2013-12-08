@@ -1,26 +1,30 @@
-<div class="container">
-    <div class="row">
-        <form class="form-signin mg-btm">
-            <h3 class="heading-desc">
-                <button type="button" class="close pull-right" aria-hidden="true">×</button>
-                Login to Isis ToDo app</h3>
-            <div class="main">
+<div id="login-holder">
+    <div class="container">
 
-                <input ng-model="credentials.username" type="text" class="form-control" placeholder="Username" autofocus>
-                <input ng-model="credentials.password" type="password" class="form-control" placeholder="Password">
+        <div class="row"  ng-controller="LoginController">
+            <form class="form-signin mg-btm" ng-submit="submit(credentials)">
+                <h3 class="heading-desc">
+                    <button type="button" class="close pull-right" aria-hidden="true">×</button>
+                    Login to Isis ToDo app</h3>
+                <div class="main">
 
-                <span class="clearfix"></span>
-            </div>
-            <div class="login-footer">
-                <div class="row">
-                    <div class="col-xs-6 col-md-6">
-                    </div>
-                    <div class="col-xs-6 col-md-6 pull-right">
-                        <button type="submit" class="btn btn-large btn-danger pull-right" ng-click="login()">Login</button>
+                    <input ng-model="credentials.username" type="text" class="form-control" placeholder="Username" autofocus>
+                    <input ng-model="credentials.password" type="password" class="form-control" placeholder="Password">
+
+                    <span class="clearfix"></span>
+                </div>
+                <div class="login-footer">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6">
+                        </div>
+                        <div class="col-xs-6 col-md-6 pull-right">
+                            <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
+
 

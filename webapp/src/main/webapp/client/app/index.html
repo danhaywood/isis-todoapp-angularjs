@@ -19,6 +19,10 @@
         <link rel="stylesheet" href="styles/bootstrap.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/login.css">
+
+        <link rel="stylesheet" href="styles/mylogin.css">
+        <link rel="stylesheet" href="styles/mymain.css">
+
         <!-- endbuild -->
     </head>
 
@@ -40,29 +44,35 @@
             <div class="container">
 
                 <div id="login-holder">
-                    <div id="loginbox">
-                        <div id="login-inner" ng:controller="LoginController">
-                            Note: there is no need to enter any credentials.<br>&nbsp;
-                            <form ng-submit="submit(credentials)">
-                                <table border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <th>Username</th>
-                                        <td><input type="text" class="login-inp" ng-model="credentials.username" /></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Password</th>
-                                        <td><input type="password" class="login-inp" ng-model="credentials.password"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <td><input type="submit" class="submit-login"/></td>
-                                    </tr>
-                                </table>
+                    <div class="container">
+
+                        <div class="row"  ng-controller="LoginController">
+                            <form class="form-signin mg-btm" ng-submit="submit(credentials)">
+                                <h3 class="heading-desc">
+                                    <button type="button" class="close pull-right" aria-hidden="true">×</button>
+                                    Login to Apache Isis</h3>
+                                <div class="main">
+
+                                    <input ng-model="credentials.username" type="text" class="form-control" placeholder="Username" autofocus>
+                                    <input ng-model="credentials.password" type="password" class="form-control" placeholder="Password">
+
+                                    <span class="clearfix"></span>
+                                </div>
+                                <div class="login-footer">
+                                    <div class="row">
+                                        <div class="col-xs-6 col-md-6">
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 pull-right">
+                                            <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
                         </div>
-                        <div class="clear"></div>
                     </div>
                 </div>
+
+                <div xxng-include="'views/login.html'"></div>
 
                 <!-- TODO: Add your site or application content here -->
                 <div xxxng-view="">
