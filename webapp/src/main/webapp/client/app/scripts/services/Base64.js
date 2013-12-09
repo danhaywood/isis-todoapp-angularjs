@@ -1,7 +1,7 @@
 'use strict';
 
 // http://wemadeyoulook.at/en/blog/implementing-basic-http-authentication-http-requests-angular/
-angular.module('clientApp')
+angular.module('BasicAuth')
   .factory('Base64', function() {
         var keyStr = 'ABCDEFGHIJKLMNOP' +
             'QRSTUVWXYZabcdef' +

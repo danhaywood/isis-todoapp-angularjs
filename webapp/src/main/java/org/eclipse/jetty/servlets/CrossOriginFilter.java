@@ -293,6 +293,9 @@ public class CrossOriginFilter implements Filter
 
     private boolean areHeadersAllowed(HttpServletRequest request)
     {
+    	if(allowedHeadersWildcard) {
+    		return true;
+    	}
         String accessControlRequestHeaders = request.getHeader(ACCESS_CONTROL_REQUEST_HEADERS_HEADER);
         LOG.debug("{} is {}", ACCESS_CONTROL_REQUEST_HEADERS_HEADER, accessControlRequestHeaders);
         boolean result = true;

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('clientApp')
-  .factory('Auth', ['Base64', '$cookieStore', '$http', function (Base64, $cookieStore, $http) {
+angular.module('BasicAuth',[])
+  .factory('Credentials', ['Base64', '$cookieStore', '$http', function (Base64, $cookieStore, $http) {
         // initialize to whatever is in the cookie, if anything
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
 

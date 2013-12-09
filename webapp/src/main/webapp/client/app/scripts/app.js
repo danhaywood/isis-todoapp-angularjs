@@ -2,17 +2,22 @@
     'use strict';
 
     angular.module('clientApp', [
-            'ngCookies',
-            'ngSanitize',
-            'ngRoute',
+            ,'ngCookies'
+            ,'ngSanitize'
+            ,'ngRoute'
 
-            'http-auth-interceptor',
-            'login',
-            'content',
+            ,'http-auth-interceptor'
+            ,'login'
+            ,'content'
+            ,'BasicAuth'
 
-            'content-mocks'
+            ,'content-mocks'
         ])
         .config(function ($routeProvider,$httpProvider) {
+
+            $httpProvider.defaults.cache = false;
+            $httpProvider.defaults.useXDomain = true;
+            delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
             $routeProvider
                 .when('/login', {
@@ -74,9 +79,9 @@
 
 
         })
-        .run( function($rootScope, $location, Auth) {
+        .run( function($rootScope, $location, Credentials) {
 
-            Auth.clearCredentials();
+            Credentials.clearCredentials();
 
         })
         .directive('authDemoApplication', function() {

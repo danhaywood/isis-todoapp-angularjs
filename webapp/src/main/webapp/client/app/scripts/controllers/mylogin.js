@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('LoginCtrl', function ($scope, $location, Auth, $q) {
+  .controller('LoginCtrl', function ($scope, $location, Credentials, $q) {
         $scope.credentials = {username: "sven", password: "pass"}
 
 /*
@@ -20,7 +20,7 @@ angular.module('clientApp')
 */
 
         $scope.login = function(){
-            Auth.setCredentials($scope.credentials)
+            Credentials.setCredentials($scope.credentials)
             $location.path("main")
         }
   });

@@ -2,18 +2,23 @@
   'use strict';
   angular.module('content', [])
   
-  .controller('ContentController', function ($scope, $http) {
+  .controller('ContentController', function ($scope, $http, Credentials) {
 
     $scope.publicContent = [];
     $scope.restrictedContent = [];
 
     $scope.publicAction = function() {
+      $http.get('http://localhost:8080/restful/').success(function(response) {
+        $scope.publicContent.push(response);
+      }).error(function(response) {
+              alert(response);
+      });
 //      $http.get('../../restful/').success(function(response) {
 //        $scope.publicContent.push(response);
 //      });
-      $http.post('data/public', $scope.publicData).success(function(response) {
-        $scope.publicContent.push(response);
-      });
+//      $http.post('data/public', $scope.publicData).success(function(response) {
+//        $scope.publicContent.push(response);
+//      });
     }
 
     $scope.restrictedAction = function() {
@@ -24,9 +29,10 @@
     }
 
     $scope.logout = function() {
-      $http.post('auth/logout').success(function() {
-        $scope.restrictedContent = [];
-      });
+        Credentials.clearCredentials();
+//      $http.post('auth/logout').success(function() {
+//        $scope.restrictedContent = [];
+//      });
     }
   });
 })();

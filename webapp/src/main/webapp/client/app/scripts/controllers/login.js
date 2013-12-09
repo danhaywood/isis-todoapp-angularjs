@@ -2,17 +2,17 @@
     'use strict';
     angular.module('login',[
             'http-auth-interceptor'
-            //,'Auth'
+            ,'BasicAuth'
         ])
 
-        .controller('LoginController', function ($scope,$http, authService) {
+        .controller('LoginController', function ($scope, $http, Credentials, authService) {
             $scope.credentials = {username:"sven",password:"pass"}
             $scope.submit = function(credentials) {
-                //Auth.setCredentials()
-                //authService.loginConfirmed();
-                $http.post('auth/login').success(function() {
-                    authService.loginConfirmed();
-                });
+                Credentials.setCredentials(credentials)
+                authService.loginConfirmed();
+//                $http.post('auth/login').success(function() {
+//                    authService.loginConfirmed();
+//                });
             }
         });
 })();

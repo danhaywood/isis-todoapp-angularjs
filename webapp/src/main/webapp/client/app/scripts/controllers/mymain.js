@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('MainCtrl', function ($scope, Auth) {
+  .controller('MainCtrl', function ($scope, Credentials) {
 
-        $scope.username = Auth.getUsername();
+        $scope.username = Credentials.getUsername();
 
 //        $scope.awesomeThings = [
 //          'HTML5 Boilerplate',
