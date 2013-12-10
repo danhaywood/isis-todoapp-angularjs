@@ -9,9 +9,9 @@
             ,'http-auth-interceptor'
             ,'login'
             ,'content'
-            ,'BasicAuth'
+            ,'basic-auth'
 
-            ,'content-mocks'
+//            ,'content-mocks'
         ])
         .config(function ($routeProvider,$httpProvider) {
 
@@ -19,44 +19,44 @@
             $httpProvider.defaults.useXDomain = true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-            $routeProvider
-                .when('/login', {
-                    templateUrl: 'views/login.html'
-                    ,controller: 'LoginCtrl'
-                })
-                .when('/logout', {
-                    templateUrl: 'views/login.html'
-                    ,controller: 'LoginCtrl'
-                    ,resolve: {
-                        app: function(Auth) {
-                            Auth.clearCredentials();
-                        }
-                    }
-                })
-                .when('/', {
-                    templateUrl: 'views/main.html'
-                    ,controller: 'MainCtrl'
-//                ,resolve: {
-//                    app: function($q) {
-//                         var defer = $q.defer();
-//                         defer.promise
-//                         .then(function() {
-//                         alert("I promised I would show up");
-//                         })
-//                         .then(function() {
-//                         alert("and me");
-//                         })
-//                         .then(function() {
-//                         alert("and me too");
-//                         })
-//                         //defer.resolve();
+//            $routeProvider
+//                .when('/login', {
+//                    templateUrl: 'views/login.html'
+//                    ,controller: 'LoginCtrl'
+//                })
+//                .when('/logout', {
+//                    templateUrl: 'views/login.html'
+//                    ,controller: 'LoginCtrl'
+//                    ,resolve: {
+//                        app: function(Credentials) {
+//                            Credentials.clearCredentials();
+//                        }
 //                    }
-//                }
-
-                })
-                .otherwise({
-                    redirectTo: '/login'
-                })
+//                })
+//                .when('/', {
+//                    templateUrl: 'views/main.html'
+//                    ,controller: 'MainCtrl'
+////                ,resolve: {
+////                    app: function($q) {
+////                         var defer = $q.defer();
+////                         defer.promise
+////                         .then(function() {
+////                         alert("I promised I would show up");
+////                         })
+////                         .then(function() {
+////                         alert("and me");
+////                         })
+////                         .then(function() {
+////                         alert("and me too");
+////                         })
+////                         //defer.resolve();
+////                    }
+////                }
+//
+//                })
+//                .otherwise({
+//                    redirectTo: '/login'
+//                })
             ;
 
             /*

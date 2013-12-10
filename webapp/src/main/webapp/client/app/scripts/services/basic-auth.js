@@ -1,8 +1,51 @@
-'use strict';
+(function() {
 
-// http://wemadeyoulook.at/en/blog/implementing-basic-http-authentication-http-requests-angular/
-angular.module('BasicAuth')
-  .factory('Base64', function() {
+    // http://wemadeyoulook.at/en/blog/implementing-basic-http-authentication-http-requests-angular/
+
+    'use strict';
+
+    angular.module('basic-auth',[])
+      .factory('Credentials', ['Base64', '$cookieStore', '$http', function (Base64, $cookieStore, $http) {
+
+            // initialize to whatever is in the cookie, if anything
+            var _encoded = $cookieStore.get('authdata');
+            var _httpHeader = 'Basic ' + _encoded;
+            $http.defaults.headers.common['Authorization'] = _httpHeader;
+
+            var _username = $cookieStore.get('username');
+
+            return {
+                setCredentials: function (credentials) {
+                    _encoded = Base64.encode(credentials.username + ':' + credentials.password);
+                    _httpHeader = 'Basic ' + _encoded;
+                    $http.defaults.headers.common.Authorization = _httpHeader;
+                    $cookieStore.put('authdata', _encoded);
+                    $cookieStore.put('username', credentials.username);
+                    _username = credentials.username;
+                },
+                clearCredentials: function () {
+                    // IE-specific, need a better way...
+                    //document.execCommand("ClearAuthenticationCache");
+                    $cookieStore.remove('authdata');
+                    $cookieStore.remove('username');
+                    _encoded = null;
+                    _httpHeader = 'Basic ' + _encoded;
+                    $http.defaults.headers.common.Authorization = 'Basic ';
+                    _username = null;
+                },
+                getUsername: function() {
+                    return _username;
+                },
+                getHttpHeader: function() {
+                    return _httpHeader;
+                },
+                getEncoded: function() {
+                    return _encoded;
+                }
+            };
+        }])
+
+    .factory('Base64', function() {
         var keyStr = 'ABCDEFGHIJKLMNOP' +
             'QRSTUVWXYZabcdef' +
             'ghijklmnopqrstuv' +
@@ -86,3 +129,5 @@ angular.module('BasicAuth')
             }
         };
     });
+
+})();

@@ -55,7 +55,7 @@
                         <div class="header">
                             <ul class="nav nav-pills pull-right">
                                 <li class="active"><a ng-href="">Home</a></li>
-                                <li><a ng-href="#/logout">Logout</a></li>
+                                <li><a ng-click="logout()">Logout</a></li>
                             </ul>
                             <h3 class="text-muted">{{username}}</h3>
                         </div>
@@ -84,25 +84,8 @@
                     <p ng-repeat="p in publicContent">Server says: {{p}}</p>
 
                     <br/>
-
-                    <h3>Enter some data and submit to send and access protected data.</h3>
-
-                    <form ng-submit="restrictedAction()">
-                        Enter restricted data:
-                        <input type="text" ng-model="restrictedData">
-                        <input type="submit" value="Submit"></input>
-                    </form>
-                    <p ng-repeat="r in restrictedContent">Server says: {{r}}</p>
-
-                    <br/>
                     <br/>
 
-                    <h3>Press the button to log out.</h3>
-                    <input type="button" value="Log out" ng-click="logout()"></input>
-
-                    <div class="clear">&nbsp;</div>
-
-                    <hr>
 
                     <div class="footer">
                         <p>♥ from the Yeoman team</p>
@@ -150,7 +133,9 @@
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+        <!--
         <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        -->
         <!-- endbuild -->
 
 
@@ -161,8 +146,7 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/content.js"></script>
 
-        <script src="scripts/services/BasicAuth.js"></script>
-        <script src="scripts/services/Base64.js"></script>
+        <script src="scripts/services/basic-auth.js"></script>
 
         <script src="scripts/mock-http-backend.js"></script>
 
