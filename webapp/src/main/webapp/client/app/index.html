@@ -47,48 +47,22 @@
                     <div ng-include="'views/login.html'"></div>
                 </div>
 
-                <div id="content" ng-controller="ContentController">
+                <div id="content" ng-controller="MainCtrl">
 
-                    <!-- TODO: Add your site or application content here -->
-                    <div xxxng-view="">
-
-                        <div class="header">
-                            <ul class="nav nav-pills pull-right">
-                                <li class="active"><a ng-href="">Home</a></li>
-                                <li><a ng-click="logout()">Logout</a></li>
-                            </ul>
-                            <h3 class="text-muted">{{username}}</h3>
-                        </div>
-
-
-                        <!--
-                        <div class="jumbotron">
-                            <h1>'Allo, 'Allo!</h1>
-                            <p class="lead">
-                                <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-                                Always a pleasure scaffolding your apps.
-                            </p>
-                            <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!</a></p>
-                        </div>
-                        -->
-
+                    <div class="header">
+                        <ul class="nav nav-pills pull-right">
+                            <li class="active"><a ng-href="">Home</a></li>
+                            <li><a ng-click="logout()">Logout</a></li>
+                        </ul>
+                        <h3 class="text-muted">{{username}}</h3>
                     </div>
 
-                    <h3>Enter some data and submit to send and access public data.</h3>
-
-                    <form ng-submit="publicAction()">
-                        Enter public data:
-                        <input type="text" ng-model="publicData">
-                        <input type="submit" value="Submit"></input>
-                    </form>
-                    <p ng-repeat="p in publicContent">Server says: {{p}}</p>
-
-                    <br/>
-                    <br/>
-
+                    <!-- TODO: Add your site or application content here -->
+                    <div ng-view="">
+                    </div>
 
                     <div class="footer">
-                        <p>♥ from the Yeoman team</p>
+                        <p>(c) 2013 Apache Isis</p>
                     </div>
 
                 </div>
@@ -143,12 +117,11 @@
 
         <script src="scripts/app.js"></script>
 
+        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/content.js"></script>
+        <script src="scripts/controllers/home-page.js"></script>
 
         <script src="scripts/services/basic-auth.js"></script>
-
-        <script src="scripts/mock-http-backend.js"></script>
 
     </body>
 </html>

@@ -8,10 +8,8 @@
 
             ,'http-auth-interceptor'
             ,'login'
-            ,'content'
+            ,'main'
             ,'basic-auth'
-
-//            ,'content-mocks'
         ])
         .config(function ($routeProvider,$httpProvider) {
 
@@ -19,23 +17,19 @@
             $httpProvider.defaults.useXDomain = true;
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-//            $routeProvider
-//                .when('/login', {
-//                    templateUrl: 'views/login.html'
-//                    ,controller: 'LoginCtrl'
-//                })
-//                .when('/logout', {
-//                    templateUrl: 'views/login.html'
-//                    ,controller: 'LoginCtrl'
-//                    ,resolve: {
-//                        app: function(Credentials) {
-//                            Credentials.clearCredentials();
-//                        }
-//                    }
-//                })
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'views/home-page.html'
+                    ,controller: 'HomePageCtrl'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+
+////            $routeProvider
 //                .when('/', {
-//                    templateUrl: 'views/main.html'
-//                    ,controller: 'MainCtrl'
+//                    templateUrl: 'views/home-page.html'
+//                    ,controller: 'HomePageCtrl'
 ////                ,resolve: {
 ////                    app: function($q) {
 ////                         var defer = $q.defer();
@@ -51,38 +45,15 @@
 ////                         })
 ////                         //defer.resolve();
 ////                    }
-////                }
-//
 //                })
-//                .otherwise({
-//                    redirectTo: '/login'
-//                })
-            ;
-
-            /*
-             function exampleInterceptor($q,$log) {
-             function success(response) {
-             $log.info("Successful response: " + response);
-             return response;
-             }
-             function error(response) {
-             var status = response.status;
-             $log.error("Response status: " + status + ". " + response);
-             return $q.reject(response); //similar to throw response;
-             }
-             return function(promise) {
-             return promise.then(success, error);
-             }
-             }
-             $httpProvider.responseInterceptors.push(exampleInterceptor);
-             */
-
+////                .otherwise({
+////                    redirectTo: '/login'
+////                })
+//            ;
 
         })
         .run( function($rootScope, $location, Credentials) {
-
             Credentials.clearCredentials();
-
         })
         .directive('authDemoApplication', function() {
             return {
