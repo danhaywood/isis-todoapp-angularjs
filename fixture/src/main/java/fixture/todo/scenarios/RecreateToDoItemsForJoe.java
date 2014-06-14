@@ -16,15 +16,14 @@
  *  specific language governing permissions and limitations
  *  under the License.
  */
+package fixture.todo.scenarios;
 
-package fixture;
+import fixture.todo.simple.ToDoItemsRecreate;
 
-import org.apache.isis.applib.fixtures.LogonFixture;
+public final class RecreateToDoItemsForJoe extends ToDoItemsRecreate {
 
-public class LogonAsSvenFixture extends LogonFixture {
-
-    public LogonAsSvenFixture() {
-        super("sven");
+    public RecreateToDoItemsForJoe() {
+        super("joe");
+        withDiscoverability(Discoverability.DISCOVERABLE);
     }
-
 }

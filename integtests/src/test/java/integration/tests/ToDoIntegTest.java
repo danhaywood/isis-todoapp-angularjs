@@ -21,12 +21,10 @@ package integration.tests;
 import integration.ToDoSystemInitializer;
 
 import org.junit.BeforeClass;
-
 import org.apache.isis.core.integtestsupport.IntegrationTestAbstract;
 import org.apache.isis.core.integtestsupport.scenarios.ScenarioExecutionForIntegration;
 
 public abstract class ToDoIntegTest extends IntegrationTestAbstract {
-
     
     @BeforeClass
     public static void initClass() {
@@ -36,5 +34,5 @@ public abstract class ToDoIntegTest extends IntegrationTestAbstract {
         // instantiating will install onto ThreadLocal
         new ScenarioExecutionForIntegration();
     }
-
+    
 }

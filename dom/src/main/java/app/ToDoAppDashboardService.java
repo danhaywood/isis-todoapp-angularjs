@@ -18,14 +18,17 @@
  */
 package app;
 
-import org.apache.isis.applib.AbstractService;
+import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.ActionSemantics;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
 import org.apache.isis.applib.annotation.Hidden;
 import org.apache.isis.applib.annotation.HomePage;
 
 @Hidden
-public class ToDoAppDashboardService extends AbstractService {
+public class ToDoAppDashboardService  {
+
+    //region > identification in the UI
+    // //////////////////////////////////////
 
     private static final String ID = "dashboard";
 
@@ -36,14 +39,24 @@ public class ToDoAppDashboardService extends AbstractService {
     public String iconName() {
         return ID;
     }
+    //endregion
 
+    //region > lookup (action)
     // //////////////////////////////////////
-
     @ActionSemantics(Of.SAFE)
     @HomePage
     public ToDoAppDashboard lookup() {
-        return newViewModelInstance(ToDoAppDashboard.class, ID);
+        return container.newViewModelInstance(ToDoAppDashboard.class, ID);
     }
 
+    //endregion
+
+    //region > injected services
+    // //////////////////////////////////////
+
+    @javax.inject.Inject
+    private DomainObjectContainer container;
+
+    //endregion
 
 }

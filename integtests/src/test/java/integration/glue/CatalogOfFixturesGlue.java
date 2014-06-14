@@ -18,7 +18,8 @@ package integration.glue;
 
 import cucumber.api.java.Before;
 import dom.todo.ToDoItem;
-import fixture.todo.ToDoItemsFixture;
+import fixture.todo.integtests.ToDoItemsIntegTestFixture;
+import fixture.todo.scenarios.RecreateToDoItemsAndCompleteSeveralForCurrent;
 
 import org.apache.isis.core.specsupport.scenarios.InMemoryDB;
 import org.apache.isis.core.specsupport.specs.CukeGlueAbstract;
@@ -40,7 +41,7 @@ public class CatalogOfFixturesGlue extends CukeGlueAbstract {
 
     @Before(value={"@integration", "@ToDoItemsFixture"}, order=20000)
     public void integrationFixtures() throws Throwable {
-        scenarioExecution().install(new ToDoItemsFixture());
+        scenarioExecution().install(new ToDoItemsIntegTestFixture());
     }
     
 

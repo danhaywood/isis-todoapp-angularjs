@@ -19,6 +19,10 @@
 
             $routeProvider
                 .when('/', {
+                    templateUrl: 'views/bootstrap.html'
+                    ,controller: 'BootstrapCtrl'
+                })
+                .when('/home-page', {
                     templateUrl: 'views/home-page.html'
                     ,controller: 'HomePageCtrl'
                 })

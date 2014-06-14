@@ -38,9 +38,8 @@ import org.apache.isis.applib.annotation.Named;
 import org.apache.isis.applib.annotation.Render;
 import org.apache.isis.applib.annotation.Render.Type;
 import org.apache.isis.applib.annotation.Title;
+import org.apache.isis.applib.services.clock.ClockService;
 import org.apache.isis.applib.util.ObjectContracts;
-
-import services.ClockService;
 
 @Named("By Date Range")
 @Bookmarkable
@@ -48,9 +47,7 @@ public class ToDoItemsByDateRangeViewModel
         extends AbstractViewModel 
         implements Comparable<ToDoItemsByDateRangeViewModel> {
 
-    
-    // //////////////////////////////////////
-    // ViewModel implementation
+    //region > viewModel implementation
     // //////////////////////////////////////
 
     @Override
@@ -63,8 +60,11 @@ public class ToDoItemsByDateRangeViewModel
         setDateRange(DateRange.valueOf(memento));
     }
 
+    //endregion
+
+    //region > dateRange (property)
     // //////////////////////////////////////
-    // DateRange
+    //
     // //////////////////////////////////////
 
     private DateRange dateRange;
@@ -80,18 +80,18 @@ public class ToDoItemsByDateRangeViewModel
     public void setDateRange(final DateRange dateRange) {
         this.dateRange = dateRange;
     }
+    //endregion
 
-
-    // //////////////////////////////////////
-    // Count
+    //region > count (derived property)
     // //////////////////////////////////////
 
     public int getCount() {
         return getItemsNotYetComplete().size();
     }
-    
-    // //////////////////////////////////////
-    // getItemsNotYetComplete
+
+    //endregion
+
+    //region > getItemsNotYetComplete (collection)
     // //////////////////////////////////////
 
     /**
@@ -133,31 +133,26 @@ public class ToDoItemsByDateRangeViewModel
         }
         return DateRange.Later;
     }
+    //endregion
 
-
-    // //////////////////////////////////////
-    // compareTo
+    //region > compareTo
     // //////////////////////////////////////
 
     @Override
     public int compareTo(ToDoItemsByDateRangeViewModel other) {
         return ObjectContracts.compare(this, other, "dateRange");
     }
+    //endregion
 
-    
-    // //////////////////////////////////////
-    // injected services
+    //region > injected services
     // //////////////////////////////////////
     
+    @javax.inject.Inject
     private ToDoItems toDoItems;
 
-    public void injectedToDoItems(final ToDoItems toDoItems) {
-        this.toDoItems = toDoItems;
-    }
-
+    @javax.inject.Inject
     private ClockService clockService;
-    public void injectClockService(ClockService clockService) {
-        this.clockService = clockService;
-    }
+
+    //endregion
 
 }

@@ -20,20 +20,18 @@ package app;
 
 import dom.todo.ToDoItem;
 
-import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.annotation.ActionSemantics;
-import org.apache.isis.applib.annotation.NotContributed;
-import org.apache.isis.applib.annotation.NotInServiceMenu;
 import org.apache.isis.applib.annotation.ActionSemantics.Of;
-import org.apache.isis.applib.annotation.NotContributed.As;
 import org.apache.isis.applib.annotation.Hidden;
+import org.apache.isis.applib.annotation.NotContributed;
+import org.apache.isis.applib.annotation.NotContributed.As;
+import org.apache.isis.applib.annotation.NotInServiceMenu;
 
 @Hidden
-public class ToDoItemAnalysisContributions extends AbstractFactoryAndRepository {
+public class ToDoItemAnalysisContributions {
 
 
-    // //////////////////////////////////////
-    // AnalyseCategory
+    //region > analyseCategory (action)
     // //////////////////////////////////////
 
     @NotInServiceMenu
@@ -42,14 +40,14 @@ public class ToDoItemAnalysisContributions extends AbstractFactoryAndRepository 
     public ToDoItemsByCategoryViewModel analyseCategory(final ToDoItem item) {
         return toDoAppAnalysis.toDoItemsForCategory(item.getCategory());
     }
+    //endregion
 
-    
-    // //////////////////////////////////////
-    // injected services
+    //region > injected services
     // //////////////////////////////////////
 
+    @javax.inject.Inject
     private ToDoItemAnalysis toDoAppAnalysis;
-    public void injectToDoAppAnalysis(ToDoItemAnalysis toDoAppAnalysis) {
-        this.toDoAppAnalysis = toDoAppAnalysis;
-    }
+
+    //endregion
+
 }

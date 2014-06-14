@@ -16,21 +16,39 @@
  */
 package dom.todo;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import org.jmock.auto.Mock;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import org.apache.isis.applib.annotation.Bulk;
+import org.apache.isis.applib.services.eventbus.EventBusService;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2;
+import org.apache.isis.core.unittestsupport.jmocking.JUnitRuleMockery2.Mode;
 
 public class ToDoTest_completed {
+
+    @Rule
+    public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
+
+    @Mock
+    private EventBusService eventBusService;
 
     private ToDoItem toDoItem;
 
     @Before
     public void setUp() throws Exception {
         toDoItem = new ToDoItem();
+        toDoItem.bulkInteractionContext = Bulk.InteractionContext.regularAction(toDoItem);
+        toDoItem.eventBusService = eventBusService;
+
+        context.ignoring(eventBusService);
+
         toDoItem.setComplete(false);
     }
     
@@ -40,12 +58,7 @@ public class ToDoTest_completed {
         assertThat(toDoItem.disableCompleted(), is(nullValue()));
         
         // when
-        Bulk.InteractionContext.with(new Runnable() {
-            @Override
-            public void run() {
-                toDoItem.completed();
-            }
-        }, toDoItem);
+        toDoItem.completed();
         
         // then
         assertThat(toDoItem.isComplete(), is(true));
