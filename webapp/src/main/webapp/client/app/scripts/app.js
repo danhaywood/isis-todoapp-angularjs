@@ -9,7 +9,9 @@
             ,'http-auth-interceptor'
             ,'login'
             ,'main'
-            ,'basic-auth'
+            ,'basic-auth',
+
+            ,'ui.bootstrap'
         ])
         .config(function ($routeProvider,$httpProvider) {
 
@@ -19,10 +21,6 @@
 
             $routeProvider
                 .when('/', {
-                    templateUrl: 'views/bootstrap.html'
-                    ,controller: 'BootstrapCtrl'
-                })
-                .when('/home-page', {
                     templateUrl: 'views/home-page.html'
                     ,controller: 'HomePageCtrl'
                 })

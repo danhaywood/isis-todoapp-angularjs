@@ -30,10 +30,12 @@ run (ie from https://github.com/yeoman/generator-angular):
     npm install -g yo grunt-cli bower
     npm install -g generator-angular
 
-
+populates ~/node_modules for the toolchain (such as bower, grunt, yeoman)
+    
     cd isis-todoapp-angularjs/webapp/src/main/webapp
 
-Run:
+Run yeoman to generate scaffolding:
+
     yo angular
 
 and
@@ -60,10 +62,17 @@ edit .bowerrc:
 rename component.json to bower.json
 
 
-Install Angular Bootstrap:
+* use bower to install Bootstrap CSS (updates bower.json, copies files into app/bower_components):
+
+    bower install bootstrap --save
+
+manually edit index.html to reference the app/bower_components/bootstrap/dist/css/bootstrap.css
+    
+* use bower to install Angular Bootstrap into app/bower_components:
 
     bower install angular-bootstrap --save
-              
+
+
 
             
 Create an Angular route called 'login':
@@ -73,6 +82,8 @@ Create an Angular route called 'login':
 
     
 start hacking...
+
+... have integrated a login page, can't quite remember how it works though :-(
 
 
     

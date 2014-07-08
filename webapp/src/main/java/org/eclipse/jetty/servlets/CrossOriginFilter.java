@@ -182,7 +182,7 @@ public class CrossOriginFilter implements Filter
     {
         String origin = request.getHeader(ORIGIN_HEADER);
         // Is it a cross origin request ?
-        if (origin != null && isEnabled(request))
+        if (/*origin != null &&*/ isEnabled(request))
         {
             if (originMatches(origin))
             {
